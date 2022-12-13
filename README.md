@@ -5,6 +5,9 @@ extension is not affiliated with LPU. This is just a tool to help students view 
 
 Note: For some tests, the `download answers` option is not working. It will soon be fixed.
 
+
+![image](https://github.com/sauravhathi/oas.lpu-tool/blob/master/images/oas.lpu-tool.gif)
+
 ## Screenshots
 
 ![image](https://user-images.githubusercontent.com/61316762/207321503-11cd1bd3-3e82-4932-9f74-0d3b57f7e255.png)
