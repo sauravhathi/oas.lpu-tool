@@ -4,7 +4,7 @@ This is a chrome extension that helps you to view your result details, download 
 extension is not affiliated with LPU. This is just a tool to help students view their results and other details.
 
 Note: For some tests, the `download answers` option is not working. It will soon be fixed.
-
+[![Download oas.lpu-tool](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/oas-lpu-tool/files/latest/download)
 
 ![image](https://github.com/sauravhathi/oas.lpu-tool/blob/master/images/oas.lpu-tool.gif)
 
