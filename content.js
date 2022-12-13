@@ -55,7 +55,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
                 var text = arr.map((item) => item.question_number + item.question + item.correct_answer).join("\n\n");
                 var TestName = `\n\t\tTestName: ` + document.getElementById("TestName").innerText + `\n\t\tMade By: https://github.com/sauravhathi\n\n\n`;
                 var textFileAsBlob = new Blob([TestName + text + `\n`], { type: 'text/plain' });
-                var fileNameToSaveAs = "result.txt";
+                var fileNameToSaveAs = "questions_and_answers by oas.lpu-tool.txt";
                 var downloadLink = document.createElement("a");
                 downloadLink.download = fileNameToSaveAs;
                 downloadLink.innerHTML = "Download File";
