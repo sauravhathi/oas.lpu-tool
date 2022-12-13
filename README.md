@@ -1,6 +1,9 @@
 # OAS.LPU TOOL
 
 This is a chrome extension that helps you to view your result details, download answers, view personal info and view recently attempted tests.
+extension is not affiliated with LPU. This is just a tool to help students view their results and other details.
+
+Note: For some tests, the `download answers` option is not working. It will soon be fixed.
 
 ## Screenshots
 
