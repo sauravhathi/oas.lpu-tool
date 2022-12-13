@@ -4,6 +4,8 @@ This is a chrome extension that helps you to view your result details, download 
 
 ## Screenshots
 
+![image](https://user-images.githubusercontent.com/61316762/207321503-11cd1bd3-3e82-4932-9f74-0d3b57f7e255.png)
+
 ## Installation
 
 1. Clone the repository
