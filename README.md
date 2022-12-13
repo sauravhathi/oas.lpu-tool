@@ -9,6 +9,8 @@ Note: For some tests, the `download answers` option is not working. It wi
 
 ![image](https://user-images.githubusercontent.com/61316762/207321503-11cd1bd3-3e82-4932-9f74-0d3b57f7e255.png)
 
+![image](https://user-images.githubusercontent.com/61316762/207384731-5e0d6d22-3052-4150-bc80-5e8e2a2736c0.png)
+
 ## Installation
 
 1. Clone the repository
