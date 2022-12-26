@@ -2,6 +2,7 @@
   "name": "OAS.LPU TOOL",
   "version": "1.0",
   "description": "OAS.LPU TOOL for result analysis",
+  "homepage_url": "https://github.com/sauravhathi/oas.lpu-tool",
   "author": "Saurav Hathi",
   "manifest_version": 3,
   "icons": {
