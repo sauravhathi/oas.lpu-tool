@@ -4,10 +4,6 @@ document.addEventListener("DOMContentLoaded", function () {
         chTab("view_result_details");
     });
 
-    document.getElementById("recentlyAttemptedTests").addEventListener("click", function () {
-        chTab("recentlyAttemptedTests");
-    });
-
     document.getElementById("downloadAnswers").addEventListener("click", function () {
         chTab("downloadAnswers");
     });

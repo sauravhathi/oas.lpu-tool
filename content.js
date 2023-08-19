@@ -1,40 +1,10 @@
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-    if (request.message === "recentlyAttemptedTests") {
-        if (!window.location.href.includes("StudentHome")) {
-            alrt("You are not on the home page.");
-            return;
-        }
-        var LoginId = sessionStorage.UserName;
-        var LoginObj = new Object();
-        LoginObj.LoginId = LoginId;
-        fetch('https://oas.lpu.in/api/OnlineExam/GetAttemptedTestForStudent?LoginId=' + LoginId, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'X-Requested-With': 'XMLHttpRequest',
-            },
-            "body": null,
-        }
-        ).then(response => response.json())
-            .then(async data => {
-                var arr = [];
-                for (var i = 0; i < data.length; i++) {
-                    arr.push(data[i].TestId + "-" + data[i].TestName);
-                    document.getElementById('lblcreatedtest' + (i + 1)).innerHTML = `${data[i].TestName} <span style="color: #ff0000;margin:0px 5px;">${data[i].TestId}</span> <a href="https://oas.lpu.in/DisplayResult?${await encRegId(data[i].TestId)}" class="view_result" target="_blank">View Result</a>`;
-                }
-            })
-            .catch(error => {
-                alrt(error);
-            });
-    }
-
-    else if (request.message === "downloadAnswers") {
+    if (request.message === "downloadAnswers") {
         var table = document.getElementById("ResultGrid");
         var rowCount = table.rows.length - 1;
         var arr = [];
         if (table.innerText === "No Record Found. Please Try Again") {
-            alrt("The teacher has not yet released any questions or answers.");
+            alert("The teacher has not yet released any questions or answers.");
             return;
         }
         else if (window.location.href.includes("DisplayResult")) {
@@ -74,16 +44,16 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
                 downloadLink.click();
             }
             else {
-                alrt("You have cancelled the download.");
+                alert("You have cancelled the download.");
             }
         }
         else {
-            alrt("You are not on the result page.");
+            alert("You are not on the result page.");
         }
     }
     else if (request.message === "view_result_details") {
         if (!window.location.href.includes("DisplayResult")) {
-            alrt("You are not on the result page.");
+            alert("You are not on the result page.");
             return;
         }
         var btn = document.getElementById("detailedResult");
@@ -93,12 +63,12 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
             btn.style.display = "none";
         }
     }
-    else if (request.message === "personalInfo"){
-        var loginId = sessionStorage.UserName;
-        var name = sessionStorage.Name;
-        var password = sessionStorage.Password;
+    else if (request.message === "personalInfo") {
+        var loginId = getCredentials("UserName");
+        var name = getCredentials("Name");
+        var password = getCredentials("Password");
 
-        alrt("LoginId: " + loginId + "\nName: " + name + "\nPassword: " + password);
+        alert("LoginId: " + loginId + "\nName: " + name + "\nPassword: " + password);
     }
 });
 
@@ -112,7 +82,57 @@ function encRegId(regid) {
     return encryptedData.toString();
 }
 
+const getCredentials = (key) => {
+    if (sessionStorage[key]) {
+        return sessionStorage[key];
+    }
+    else{
+        return localStorage[key];
+    }
+}
 
-function alrt(msg) {
-    alert(msg);
+// recently attempted test
+function rat() {
+    if(sessionStorage.UserName && sessionStorage.Name && sessionStorage.Password){
+        localStorage.setItem("UserName",sessionStorage.UserName);
+        localStorage.setItem("Name",sessionStorage.Name);
+        localStorage.setItem("Password",sessionStorage.Password);
+    }
+    var LoginId = getCredentials("UserName");
+    console.log(LoginId);
+    var LoginObj = new Object();
+    LoginObj.LoginId = LoginId;
+    fetch('https://oas.lpu.in/api/OnlineExam/GetAttemptedTestForStudent?LoginId=' + LoginId, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+        },
+        "body": null,
+    }
+    ).then(response => response.json())
+        .then(async data => {
+            var arr = [];
+            for (var i = 0; i < data.length; i++) {
+                arr.push(data[i].TestId + "-" + data[i].TestName);
+                document.getElementById('lblcreatedtest' + (i + 1)).innerHTML = `${data[i].TestName} <span style="color: #ff0000;margin:0px 5px;">${data[i].TestId}</span> <a href="https://oas.lpu.in/DisplayResult?${await encRegId(data[i].TestId)}" class="view_result" target="_blank">View Result</a>`;
+            }
+        })
+        .catch(error => {
+            alert(error);
+        });
+}
+
+function view_result_details() {
+    var btn = document.getElementById("detailedResult");
+    btn.click();
+}
+
+if (window.location.href.includes("StudentHome")) {
+    rat();
+}
+
+if (window.location.href.includes("DisplayResult")) {
+    view_result_details();
 }
