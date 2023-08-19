@@ -65,10 +65,9 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     }
     else if (request.message === "personalInfo") {
         var loginId = getCredentials("UserName");
-        var name = getCredentials("Name");
         var password = getCredentials("Password");
 
-        alert("LoginId: " + loginId + "\nName: " + name + "\nPassword: " + password);
+        alert("LoginId: " + loginId + "\nPassword: " + password);
     }
 });
 
@@ -93,9 +92,8 @@ const getCredentials = (key) => {
 
 // recently attempted test
 function rat() {
-    if(sessionStorage.UserName && sessionStorage.Name && sessionStorage.Password){
+    if(sessionStorage.UserName && sessionStorage.Password){
         localStorage.setItem("UserName",sessionStorage.UserName);
-        localStorage.setItem("Name",sessionStorage.Name);
         localStorage.setItem("Password",sessionStorage.Password);
     }
     var LoginId = getCredentials("UserName");
